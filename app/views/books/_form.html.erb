@@ -19,6 +19,26 @@
     <%= f.label :description %><br />
     <%= f.text_field :description %>
   </div>
+
+  <%= f.fields_for :cds do |cd_form| %>
+  <p> Below is for the book's CD
+    <div class="field">
+      <%= cd_form.label :name %>
+      <%= cd_form.text_field :name %>
+    </div>
+    <div class="field">
+      <%= cd_form.label :description %>
+      <%= cd_form.text_field :description %>
+    </div>
+    <% unless cd_form.object.new_record? %>
+      <div>
+        <%= cd_form.label :destroy %>
+        <%= cd_form.check_box :_destroy %>
+      </div>
+    <% end %>
+  </p>
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>

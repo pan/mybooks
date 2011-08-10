@@ -25,7 +25,6 @@ class BooksController < ApplicationController
   # GET /books/new.xml
   def new
     @book = Book.new
-    @book.cds.build
 
     respond_to do |format|
       format.html # new.html.erb

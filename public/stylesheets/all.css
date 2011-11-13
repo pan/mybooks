@@ -1,0 +1,35 @@
+body {
+  background-color: LightBlue;
+}
+
+h1 {
+  color: Purple;
+}
+
+.center {
+  text-align: center;
+}
+
+.center table{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table {
+  color: Purple;
+  background-color: Azure;
+  border: 1px solid;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: Coral;
+}
+
+th, td {
+  border: 1px solid;
+} 
+
+.field {
+  border: 1px solid;
+}

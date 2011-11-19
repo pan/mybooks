@@ -1,21 +1,39 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @book.name %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @book.description %>
-</p>
-
-<p>
-<ul>
-<% @book.cds.each do |cd| %>
-  <li><%= cd.name %> : <%= cd.description %></li>
-<% end %>
-</ul>
-
-<%= link_to 'Edit', edit_book_path(@book) %> |
-<%= link_to 'Back', books_path %>
+<table>
+<thead>
+  <tr>
+    <th colspan="2">Book</th>
+    <th colspan="2">CD</th>
+    <th rowspan="2" colspan="3">Actions</th>
+  </tr>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+</thead>
+<tbody>
+  <% cd_amount = @book.cds.size %>
+  <tr>
+    <td <%= set_rowspan(cd_amount) %>><%= @book.name %></td>
+    <td <%= set_rowspan(cd_amount) %>><%= @book.description %></td>
+    <td><%= @book.cds.first.blank? ? "" : @book.cds.first.name %></td>
+    <td><%= @book.cds.first.blank? ? "" : @book.cds.first.description %></td>
+    <td <%= set_rowspan(cd_amount) %>><%= link_to 'Back', books_path %></td>
+    <td <%= set_rowspan(cd_amount) %>><%= link_to 'Edit', edit_book_path(@book) %></td>
+    <td <%= set_rowspan(cd_amount) %>><%= link_to 'Destroy', @book, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+  <%# sql syntax error if without :limit with sqlite, bug? %>
+  <% restcd = @book.cds.all(:limit=>:all, :offset=>1) %>
+  <% if !restcd.blank? %>
+    <% restcd.each do |cd| %>
+        <tr>
+          <td><%= cd.name %></td>
+          <td><%= cd.description %></td>
+        </tr>
+    <% end %>
+  <% end %>
+</tbody>
+</table>

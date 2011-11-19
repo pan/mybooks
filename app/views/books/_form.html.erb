@@ -12,29 +12,25 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :name %>
     <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
+    <%= f.label :description %>
     <%= f.text_field :description %>
   </div>
+  <br />
 
   <%= f.fields_for :cds do |cd_form| %>
-  <p> The book's CD
     <div class="field">
+      <p> CD info </p>
       <%= cd_form.label :name %>
       <%= cd_form.text_field :name %>
-    </div>
-    <div class="field">
       <%= cd_form.label :description %>
       <%= cd_form.text_field :description %>
     </div>
     <%= cd_form.link_to_remove "[-] Remove this CD" %>
-  </p>
   <% end %>
-  <%= f.link_to_add "[+] Add a new CD", :cds %>
 
+  <%= f.link_to_add "[+] Add a new CD", :cds %>
   <div class="actions">
     <%= f.submit %>
   </div>
